@@ -13,10 +13,12 @@ inputs = {
 
 ## Packages
 
-This flake exposes two packages, corresponding to the `specific` and `generic` zen versions.
+~~This flake exposes two packages, corresponding to the `specific` and `generic` zen versions.~~
 The generic version maximizes compatibility with old CPUs and kernels by compiling it with some
 lower common denominator CFLAGS, the `specific` one targets newer CPUs and kernels but it may not
 work in your case.
+
+***NOTICE:*** *In this version only `specific` version is maintained.*
 
 The `default` package is the `specific` one for backwards compatibility with older versions of the flake.
 
