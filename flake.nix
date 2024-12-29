@@ -65,8 +65,8 @@
         libXcomposite
         libXScrnSaver
       ]);
-    mkZen = {variant}: let
-      downloadData = dlUrl."${variant}";
+    mkZen = {}: let
+      downloadData = dlUrl;
     in
       pkgs.stdenv.mkDerivation {
         inherit version;
