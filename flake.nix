@@ -10,10 +10,10 @@
     nixpkgs,
   }: let
     system = "x86_64-linux";
-    version = "1.0.2-b.3";
-    downloadUrl = {
-      specific.url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-specific.tar.bz2";
-      specific.sha256 = "0gjrvsq83l6424ijii2w0c43f2nkf6n04hb2bc9wf1yyq7g3s2nc";
+    version = "1.0.2-b.5";
+    dlUrl = {
+      url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-x86_64.tar.bz2";
+      sha256 = "1xp0z86l7z661cwckgr623gwwjsy3h66900xqjq6dvgx5a3njbxi";
     };
     pkgs = import nixpkgs {inherit system;};
     runtimeLibs = with pkgs;
@@ -66,7 +66,7 @@
         libXScrnSaver
       ]);
     mkZen = {variant}: let
-      downloadData = downloadUrl."${variant}";
+      downloadData = dlUrl."${variant}";
     in
       pkgs.stdenv.mkDerivation {
         inherit version;
@@ -101,9 +101,6 @@
         meta.mainProgram = "zen";
       };
   in {
-    packages."${system}" = {
-      specific = mkZen {variant = "specific";};
-      default = self.packages."${system}".specific;
-    };
+    packages."${system}".default = mkZen {};
   };
 }
